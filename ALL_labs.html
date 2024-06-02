@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Звіти з дисципліни</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+<style>
+    body, html {
+        height: 100%; 
+    }
+    body {
+        background-color: rgb(199, 241, 232);
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex; 
+        flex-direction: column;
+    }
+    .container {
+        display: flex;
+    }
+    .photo {
+        order: 2; 
+        flex: 1;
+        padding: 10px;
+    }
+    .photo img {
+        width: 350px;
+        height: 210px;
+        overflow: hidden;
+        border-radius: 10%;
+        object-fit: cover;
+        margin-right: 50px;
+    }
+    .content {
+        order: 1; 
+        flex: 2;
+        padding: 10px;
+    }
+    .header1 {
+        font-size: 32px; 
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
+    .header2 {
+        font-size: 22px; 
+    }
+    .flex-container {
+        display: flex;
+        background-color: rgb(0, 0, 0);
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    .flex-container > div {
+        background-color: #fffcf5;
+        margin: 5px;
+        padding: 20px;
+        font-size: 14px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .flex-container > div[onclick*="Лабораторна робота №3"],
+    .flex-container > div[onclick*="Лабораторна робота №7"],
+    .flex-container > div[onclick*="Лабораторна робота №8"],
+    .flex-container > div[onclick*="Лабораторна робота №9"] {
+        background-color: #878585; /* Сіра заливка */
+    }
+
+    .flex-container > div:hover {
+        background-color: rgb(0, 0, 0);
+    }
+    .new-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: auto; 
+        padding: 20px 10px;
+    }
+    .new-box {
+        flex: 1;
+        background-color: #fffcf5;
+        margin: 5px;
+        padding: 20px;
+        font-size: 16px;
+        border-radius: 5px;
+    }
+    .in-container {
+        display: flex;
+        flex-direction: column; 
+        background-color: rgb(0, 0, 0);
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    .in-container > div {
+        background-color: #fffcf5;
+        margin: 5px;
+        padding: 20px;
+        font-size: 18px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    .in-container > div:hover {
+        background-color: #65858e;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="header1">Звіти лабораторних робіт з дисципліни "WEB – орієнтовані технології. Основи Frontend та Backend розробок"</div>
+            <div class="header2">Студентки групи ІК-11 Пузирної Тетяни Миколаївни</div>
+        </div>
+        <div class="photo">
+            <img src="me.jpg" alt="Me">
+        </div>
+    </div>
+    <div class="flex-container">
+        <div class="lab" onclick="showLabContent('Лабораторна робота №1')">Лабораторна робота №1</div>
+        <div class="lab" onclick="showLabContent('Лабораторна робота №2')">Лабораторна робота №2</div>
+        <div class="lab" onclick="showLabContent('Лабораторна робота №3')">Лабораторна робота №3</div>  
+        <div class="lab" onclick="showLabContent('Лабораторна робота №4')">Лабораторна робота №4</div>
+        <div class="lab" onclick="showLabContent('Лабораторна робота №5')">Лабораторна робота №5</div>
+        <div class="lab" onclick="showLabContent('Лабораторна робота №5.1')">Лабораторна робота №5.1</div>
+        <div class="lab" onclick="showLabContent('Лабораторна робота №6')">Лабораторна робота №6</div>  
+        <div class="lab" onclick="showLabContent('Лабораторна робота №7')">Лабораторна робота №7</div>
+        <div class="lab" onclick="showLabContent('Лабораторна робота №8')">Лабораторна робота №8</div>
+        <div class="lab" onclick="showLabContent('Лабораторна робота №9')">Лабораторна робота №9</div>  
+    </div>
+    <div class="new-container">
+        <div class="new-box" id="labContent"></div>
+        <div class="new-box" id="newContainer2" style="height: calc(2250px);"></div>
+    </div>
+</body>
+</html>
+
+    <script>
+        let lab1Clicked = false;
+        let lab2Clicked = false; 
+        let lab3Clicked = false;
+        let lab4Clicked = false;
+        let lab5Clicked = false;
+        let lab51Clicked = false;
+        let lab6Clicked = false;
+        let lab7Clicked = false;
+        let lab8Clicked = false;
+        let lab9Clicked = false;
+        function showLabContent(title) {
+            const newContainer2 = document.getElementById('newContainer2');
+            newContainer2.innerHTML = ''; // Очищення контейнера
+            if (title === 'Лабораторна робота №1') {
+                if (!lab1Clicked) {
+                    const labContent = document.getElementById('labContent');
+                    labContent.innerHTML = `
+                        <div class="in-container">
+                            <div class="in" onclick="showLabContent('Опис предметного середовища')">Опис предметного середовища</div>
+                            <div class="in" onclick="showLabContent('Тема Мета Місце розташування лаби номер один')">Тема Мета Місце розташування лаби номер один</div>
+                            <div class="in" onclick="showLabContent('Структура документа')">Структура документа</div>  
+                            <div class="in" onclick="showLabContent('HTML-код таблиць')">HTML-код таблиць</div>
+                            <div class="in" onclick="showLabContent('HTML-код форми')">HTML-код форми</div>
+                            <div class="in" onclick="showLabContent('HTML-код зображення')">HTML-код зображення</div>  
+                            <div class="in" onclick="showLabContent('Висновки')">Висновки</div>
+                        </div>
+                    `;
+                    lab1Clicked = true;
+                    lab2Clicked = false;
+                    lab3Clicked = false;
+                    lab4Clicked = false;
+                    lab5Clicked = false;
+                    lab51Clicked = false;
+                    lab6Clicked = false;
+                    lab7Clicked = false;
+                    lab8Clicked = false;
+                    lab9Clicked = false;
+                }
+            } else if (title === 'Лабораторна робота №2') {
+                if (!lab2Clicked) {
+                    const labContent = document.getElementById('labContent');
+                    labContent.innerHTML = `
+                        <div class="in-container">
+                            <div class="in" onclick="showLabContent('Тема Мета ЛР №2. Місце розташування лаби, звіту')">Тема Мета ЛР №2. Місце розташування лаби, звіту</div>
+                            <div class="in" onclick="showLabContent('Способи підключення стилів')">Способи підключення стилів</div>  
+                            <div class="in" onclick="showLabContent('Селектори')">Селектори</div>
+                            <div class="in" onclick="showLabContent('Селектори тегу')">Селектори тегу</div>
+                            <div class="in" onclick="showLabContent('Селектори класу')">Селектори класу</div>  
+                            <div class="in" onclick="showLabContent('Селектори ідентифікаторів')">Селектори ідентифікаторів</div>  
+                            <div class="in" onclick="showLabContent('Інші селектори')">Інші селектори</div>  
+                            <div class="in" onclick="showLabContent('CSS шрифти, текст, таблиці, фон, списки, просунутий')">CSS шрифти, текст, таблиці, фон, списки, просунутий</div>  
+                            <div class="in" onclick="showLabContent('Висновки 2')">Висновки 2</div>
+                        </div>
+                    `;
+                    lab2Clicked = true;
+                    lab1Clicked = false;
+                    lab3Clicked = false;
+                    lab4Clicked = false;
+                    lab5Clicked = false;
+                    lab51Clicked = false;
+                    lab6Clicked = false;
+                    lab7Clicked = false;
+                    lab8Clicked = false;
+                    lab9Clicked = false;
+                }
+            }
+            else if (title === 'Лабораторна робота №4') {
+                if (!lab3Clicked) {
+                    const labContent = document.getElementById('labContent');
+                    labContent.innerHTML = `
+                        <div class="in-container">
+                            <div class="in" onclick="showLabContent('Тема Мета ЛР №4. Місце розташування лаби, звіту')">Тема Мета ЛР №4. Місце розташування лаби, звіту</div>
+                            <div class="in" onclick="showLabContent('Медіа-запити')">Медіа-запити</div>  
+                            <div class="in" onclick="showLabContent('Адаптивна верстка')">Адаптивна верстка</div>
+                            <div class="in" onclick="showLabContent('Десктопна версія')">Десктопна версія</div>  
+                            <div class="in" onclick="showLabContent('Планшетна версія')">Планшетна версія</div>  
+                            <div class="in" onclick="showLabContent('Мобільна версія')">Мобільна версія</div>  
+                            <div class="in" onclick="showLabContent('Висновки 4')">Висновки 4</div>
+                        </div>
+                    `;
+                    lab2Clicked = false;
+                    lab1Clicked = false;
+                    lab3Clicked = false;
+                    lab4Clicked = true;
+                    lab5Clicked = false;
+                    lab51Clicked = false;
+                    lab6Clicked = false;
+                    lab7Clicked = false;
+                    lab8Clicked = false;
+                    lab9Clicked = false;
+                }
+            } 
+            else if (title === 'Лабораторна робота №5') {
+                if (!lab3Clicked) {
+                    const labContent = document.getElementById('labContent');
+                    labContent.innerHTML = `
+                        <div class="in-container">
+                            <div class="in" onclick="showLabContent('Тема Мета ЛР №5. Місце розташування лаби, звіту')">Тема Мета ЛР №5. Місце розташування лаби, звіту</div>
+                            <div class="in" onclick="showLabContent('Способи функціонального застосування JavaScript')">Способи функціонального застосування JavaScript</div>  
+                            <div class="in" onclick="showLabContent('Схема URL')">Схема URL</div>
+                            <div class="in" onclick="showLabContent('Обробник подій')">Обробник подій</div>  
+                            <div class="in" onclick="showLabContent('Підстановка entity')">Підстановка entity</div>  
+                            <div class="in" onclick="showLabContent('Вставка тег script')">Вставка тег script</div>  
+                            <div class="in" onclick="showLabContent('Завдання 1 з масивом')">Завдання 1 з масивом</div>  
+                            <div class="in" onclick="showLabContent('Завдання 2')">Завдання 2</div>  
+                            <div class="in" onclick="showLabContent('Висновки 5')">Висновки 5</div>
+                        </div>
+                    `;
+                    lab2Clicked = false;
+                    lab1Clicked = false;
+                    lab3Clicked = false;
+                    lab4Clicked = false;
+                    lab5Clicked = true;
+                    lab51Clicked = false;
+                    lab6Clicked = false;
+                    lab7Clicked = false;
+                    lab8Clicked = false;
+                    lab9Clicked = false;
+                }
+            } 
+
+            else if (title === 'Лабораторна робота №5.1') {
+                if (!lab3Clicked) {
+                    const labContent = document.getElementById('labContent');
+                    labContent.innerHTML = `
+                        <div class="in-container">
+                            <div class="in" onclick="showLabContent('Тема Мета ЛР №5.1 Місце розташування лаби, звіту')">Тема Мета ЛР №5.1 Місце розташування лаби, звіту</div>
+                            <div class="in" onclick="showLabContent('Завдання 1')">Завдання 1</div>  
+                            <div class="in" onclick="showLabContent('Завдання 3')">Завдання 3</div>  
+                            <div class="in" onclick="showLabContent('Завдання 5')">Завдання 5</div>  
+                            <div class="in" onclick="showLabContent('Завдання 7')">Завдання 7</div>  
+                            <div class="in" onclick="showLabContent('Завдання 9')">Завдання 9</div>  
+                            <div class="in" onclick="showLabContent('Завдання 10')">Завдання 10</div>  
+                            <div class="in" onclick="showLabContent('Висновки 5.1')">Висновки 5</div>
+                        </div>
+                    `;
+                    lab2Clicked = false;
+                    lab1Clicked = false;
+                    lab3Clicked = false;
+                    lab4Clicked = false;
+                    lab5Clicked = false;
+                    lab51Clicked = true;
+                    lab6Clicked = false;
+                    lab7Clicked = false;
+                    lab8Clicked = false;
+                    lab9Clicked = false;
+                }
+            } 
+            else if (title === 'Лабораторна робота №6') {
+                if (!lab3Clicked) {
+                    const labContent = document.getElementById('labContent');
+                    labContent.innerHTML = `
+                        <div class="in-container">
+                            <div class="in" onclick="showLabContent('Тема Мета ЛР №6 Місце розташування лаби, звіту')">Тема Мета ЛР №6 Місце розташування лаби, звіту</div>
+                            <div class="in" onclick="showLabContent('Завдання 6.1')">Завдання 6.1</div>  
+                            <div class="in" onclick="showLabContent('Завдання 6.3')">Завдання 6.3</div>  
+                            <div class="in" onclick="showLabContent('Завдання 6.5')">Завдання 6.5</div>  
+                            <div class="in" onclick="showLabContent('Завдання 6.7')">Завдання 6.7</div>  
+                            <div class="in" onclick="showLabContent('Завдання 6.8')">Завдання 6.8</div>  
+                            <div class="in" onclick="showLabContent('Завдання 6.9')">Завдання 6.9</div>  
+                            <div class="in" onclick="showLabContent('Завдання 6.10')">Завдання 6.10</div>  
+                            <div class="in" onclick="showLabContent('Висновки 6')">Висновки 6</div>
+                        </div>
+                    `;
+                    lab2Clicked = false;
+                    lab1Clicked = false;
+                    lab3Clicked = false;
+                    lab4Clicked = false;
+                    lab5Clicked = false;
+                    lab51Clicked = false;
+                    lab6Clicked = true;
+                    lab7Clicked = false;
+                    lab8Clicked = false;
+                    lab9Clicked = false;
+                }
+            } 
+            else if (title === 'Опис предметного середовища') {
+            newContainer2.innerHTML = `
+            Тема: Клуб настільних ігор.
+            <br> </br>
+            Опис: Інтерактивна платформа, яка надає клієнтам можливість переглядати, вибирати та замовляти настільні ігри зручним способом. Завдяки цьому додатку досягається широкий асортимент і доступність товарів для гравців будь-якого віку та інтересів. Також періодично проводяться ігротеки, тож цей онлайн-магазин в якійсь мірі є клубом, де у визначений час можна прийти і пограти в настільні ігри у компанії однодумців. 
+            `;} 
+            else if (title === 'Тема Мета Місце розташування лаби номер один'){newContainer2.innerHTML = `
+            Тема: СТРУКТУРА HTML-ДОКУМЕНТА. ВИБІР ПРЕДМЕТНОЇ ГАЛУЗІ. РОБОТА З ПОСИЛАННЯМИ, ТАБЛИЦЯМИ, ЗОБРАЖЕННЯМИ, СПИСКАМИ в HTML-ДОКУМЕНТІ.
+            <br> </br>
+            Мета: Придбати практичні навички роботи  з HTML-документом, таблицями, зображеннями, посиланнями, списками, формами. Створити шаблон звітного HTML-документом для відображення результатів роботи всіх лабораторних робіт.
+            <br> </br>
+            Місце розташування Лабораторної роботи №1:
+            <a>https://github.com/taijahna/Website/</a>
+            `;} 
+            else if (title === 'Структура документа'){newContainer2.innerHTML = `
+            HTML (HyperText Markup Language) - це мова розмітки, яка використовується для створення веб-сторінок. Структура HTML документа складається з кількох основних елементів:
+            <br> </br>
+            !DOCTYPE html: Це оголошення типу документа, яке повідомляє браузеру, що документ є HTML5. Зазвичай це перший рядок у файлі HTML.
+            <br> </br>
+            html: Цей елемент є кореневим елементом всього HTML документа. Всі інші елементи мають бути вкладені усередину цього елемента.
+            <br> </br>
+            head: Цей елемент містить метадані документа, такі як заголовок сторінки, посилання на зовнішні таблиці стилів (CSS), скрипти JavaScript, мета-теги та інші.
+            <br> </br>
+            script: Цей елемент використовується для вставки скриптів JavaScript безпосередньо в HTML документ або посилання на зовнішні файли скриптів.
+            <br> </br>
+            body: Цей елемент містить вміст веб-сторінки, який відображається у вікні браузера, включаючи текст, зображення, відео, аудіо, форми та інші елементи.
+            `;}
+            else if (title === 'HTML-код таблиць') {
+            newContainer2.innerHTML = ` HTML надає елемент table для створення таблиць на веб-сторінках. Таблиця складається з рядків (tr), які у свою чергу містять осередки даних (td) або заголовків (th). 
+            <br> </br>
+            <img src="table.jpg" style="width: 400px; height: 400px;"><br> </br>
+            Результат:<br> </br>
+            <img src="table2.jpg" style="width: 700px; height: 150px;">`;} 
+
+            else if (title === 'HTML-код форми') {
+            newContainer2.innerHTML = ` Форми є одним із основних елементів веб-сторінок, які дозволяють користувачам взаємодіяти з веб-сайтом, надсилаючи дані на сервер для обробки. Ось приклад HTML-коду для створення простої форми:
+            <br> </br>
+            <img src="форма.jpg" style="width: 400px; height: 200px;">
+            Результат:<br> </br>
+            <img src="форма2.jpg" style="width: 250px; height: 150px;">`;} 
+            else if (title === 'HTML-код зображення') {
+            newContainer2.innerHTML = `HTML дозволяє вставляти зображення на веб-сторінку за допомогою тега <img>
+            <br> </br>
+            <img src="picture.jpg" style="width: 500px; height: 250px;">
+            <br> </br>
+            Результат:<br> </br>
+            <img src="games.jpg" style="width: 600px; height: 200px;"><br> </br>
+            У цьому прикладі тег <img> використовується для вставки зображення на веб-сторінку. Атрибут src вказує шлях до зображення. В даному випадку, зображення повинно знаходитися в тій самій теки, що і HTML-файл, і мати назву "image.jpg". Атрибут alt використовується для визначення альтернативного тексту, який відображається, якщо зображення не може бути завантажене або якщо користувач використовує програмне забезпечення, яке не підтримує відображення зображень.
+            <br> </br>
+            Ось деякі основні атрибути тега <img>:
+            <br> </br>
+            Src: вказує шлях до зображення. Шлях може бути відносним або абсолютним.
+            <br> </br>
+            Alt: надає альтернативний текст, який буде відображатися в разі неможливості завантаження зображення або для користувачів, які використовують програмне забезпечення, що не підтримує відображення зображень.
+            <br> </br>
+            Width і Height: визначають ширину і висоту зображення, відповідно. Вони можуть бути вказані в пікселях або відсотках.
+            <br> </br>
+            HTML також підтримує використання мапи зображень (map) і гео-тегів (area), що дозволяє створювати реактивні області на зображенні, які реагують на кліки користувача.
+            `;} 
+            else if (title === 'Висновки') {
+                newContainer2.innerHTML = 'Після виконання Лабораторної роботи №1 я оволоділа практичними навичками роботи  з HTML-документом, таблицями, зображеннями, посиланнями, списками, формами. Також, я створила шаблон звітного HTML-документа для відображення результатів роботи всіх лабораторних робіт. Зокрема першої на даному етапі, також додатково закріпила свої навички у програмі Figma.';
+            }
+            else if (title === 'Тема Мета ЛР №2. Місце розташування лаби, звіту'){newContainer2.innerHTML = `
+            Тема: КАСКАДНІ ТАБЛИЦІ СТИЛІВ. СЕЛЕКТОРИ .ІДЕНТИФІКАТОРИ. СТИЛЬОВЕ ОФОРМЛЕННЯ ТЕКСТОВИХ ЕЛЕМЕНТІВ В HTML-ДОКУМЕНТАХ.
+            <br> </br>
+            Мета: Придбати практичні навички роботи з селекторами, ідентифікаторами, списками, різноманітними властивостями кольору і фону, зовнішними та внутрішними відступами, плаваючими елементами, оформленням текстових елементів.
+            <br> </br>
+            Місце розташування Лабораторної роботи №2:
+            <a">https://github.com/taijahna/Lab2/</a> 
+            <br></br>
+            Місце розташування звіту:
+            <a>https://github.com/taijahna/LABS</a>
+            `;} 
+            else if (title === 'Способи підключення стилів'){newContainer2.innerHTML = `
+            1) Використання внутрішнього стилю (Internal CSS): Можна вкласти CSS правила безпосередньо всередині тегу style у розділі head HTML документу. Наприклад:
+            <img src="1.jpg" style="width: 550px; height: 200px;">
+            <br> </br>
+            2) Підключення зовнішнього файла стилів (External CSS):Можна зберегти CSS правила у окремому файлі з розширенням .css, а потім підключити цей файл до HTML документу за допомогою тегу link. Наприклад: Вміст файлу index.html:
+            <img src="2.jpg" style="width: 550px; height: 200px;">
+            <br> </br>
+            3) Використання inline стилів: Можна застосовувати стилі безпосередньо до окремих HTML елементів, використовуючи атрибут style. Наприклад:
+            <img src="3.jpg" style="width: 400px; height: 200px;">
+            4) CSS-frameworks: Можна використовувати готові фреймворки, щоб швидко встановлювати стиль на ваш сайт. Наприклад, Bootstrap, Bulma, Foundation
+            `;} 
+            else if (title === 'Селектори'){newContainer2.innerHTML = `
+            <ul>
+                <li>Селектори - це такі патерни, які використовуються у CSS для вибору елементів HTML, до яких будуть застосовані стилі. CSS селектори дозволяють точно вказати, які елементи на сторінці потрібно стилізувати.</li>
+                <li>Види селекторів:</li>
+                    <ul>
+                    <li>Селектори тегу</li>
+                    <li>Селектори класу</li>
+                    <li>Селектори ідентифікаторів</li>
+                    <li>Додаткові селектори</li>
+                </ul>
+            </ul>`;}
+            else if (title === 'Селектори тегу'){newContainer2.innerHTML = `
+            Селектор тегу р.
+            Застосування:
+            <img src="4.jpg" style="width: 600px; height: 150px;"> <br></br>
+            Результат застосування тегу:<br></br>
+            <img src="5.jpg" style="width: 350px; height: 250px;"> 
+            `;} 
+            else if (title === 'Селектори класу'){newContainer2.innerHTML = `
+            Селектор класу menu-item:
+            <img src="6.jpg" style="width: 300px; height: 200px;"> <br></br>
+            Результат застосування тегу:<br></br>
+            <img src="7.jpg" style="width: 600px; height: 50px;"> <br></br>
+            `;}
+            else if (title === 'Селектори ідентифікаторів'){newContainer2.innerHTML = `
+            Селектор ідентифікатору #contact-modal
+            <img src="8.jpg" style="width: 400px; height: 200px;"><br> </br>
+            Результат застосування тегу:<br></br>
+            <img src="5.jpg" style="width: 350px; height: 250px;"> 
+            `;}
+            else if (title === 'Інші селектори'){newContainer2.innerHTML = `
+            Універсальний селектор
+            <img src="9.jpg" style="width: 400px; height: 100px;"><br> </br>
+            Псевдокласи
+            <img src="12.jpg" style="width: 250px; height: 100px;"><br> </br>
+            Контекстні селектори
+            <img src="10.jpg" style="width: 400px; height: 200px;"><br> </br>
+            Селектори атрибутів
+            <img src="13.jpg" style="width: 400px; height: 150px;"><br> </br>
+            Потомковий селектор
+            <img src="11.jpg" style="width: 200px; height: 100px;">
+            `;}
+            else if (title === 'CSS шрифти, текст, таблиці, фон, списки, просунутий'){newContainer2.innerHTML = `
+            Шрифти 
+            <img src="14.jpg" style="width: 500px; height: 100px;">
+            Текст <br> 
+            <img src="15.jpg" style="width: 450px; height: 100px;"> <br> </br>
+            Таблиці <br> 
+            <img src="16.jpg" style="width: 350px; height:150px;"><br> </br>
+            Фон<br> 
+            <img src="17.jpg" style="width: 500px; height: 150px;"><br> </br>
+            Списки <br> 
+            <img src="18.jpg" style="width: 400px; height: 150px;"><br> </br>
+            Просунутий CSS <br> 
+            <img src="19.jpg" style="width: 400px; height: 150px;">
+            `;}
+            else if (title === 'Висновки 2') {
+                newContainer2.innerHTML = 'Після виконання Лабораторної роботи №2 я оволоділа практичними навичками роботи з селекторами, ідентифікаторами, списками, різноманітними властивостями кольору і фону, зовнішними та внутрішними відступами, плаваючими елементами, оформленням текстових елементів.';
+            }
+            else if (title === 'Тема Мета ЛР №4. Місце розташування лаби, звіту'){newContainer2.innerHTML = `
+            Тема: АДАПТИВНА ВЕРСТКА. МЕДІА-ЗАПИТИ. МЕТАТЕГ VIEWPORT. СТРАТЕГІЯ MOBILE FIRST. <br> </br>
+            Мета: Адаптивна верстка. Медіа-запити. Медіа-типи. Медіа-функції.Метатег viewport. Інструменти розробника. Стратегія Mobile First. <br> </br>
+            Місце розташування Лабораторної роботи №4:
+            <a>https://github.com/taijahna/Lab4</a> <br></br>
+            Місце розташування звіту:
+            <a>https://github.com/taijahna/LABS</a><br></br>
+            `;} 
+            else if (title === 'Медіа-запити'){newContainer2.innerHTML = `
+            Медіа запити CSS - це інструмент веб-дизайну, що дозволяє адаптувати вигляд сторінки в залежності від розміру екрана, пристрою та інших характеристик відображення. Вони використовуються для створення відзивчивих веб-сайтів, які автоматично пристосовуються до різних умов відображення, таких як ширина екрана, орієнтація (горизонтальна або вертикальна), роздільна здатність тощо. <br></br>
+            <img src="media.jpg" style="width: 550px; height: 100px;"><br></br>
+            У цьому прикладі @media screen and (max-width: 480px) означає, що ці стилі будуть застосовуватися лише для екранів шириною 480 пікселів або менше. <br></br>
+            Медіа запити можуть включати різні типи умов, такі як min-width та max-width для оголошення стилів в залежності від ширини вікна. Orientation: portrait чи orientation: landscape для визначення орієнтації пристрою. Resolution, aspect-ratio, color та багато інших умов, які дозволяють ще більш точно налаштовувати дизайн під конкретні характеристики пристроїв користувачів.
+            `;}
+            else if (title === 'Адаптивна верстка') {
+                newContainer2.innerHTML = 'Адаптивна верстка — підхід у веб-дизайні, який дозволяє створювати веб-сайти, що ефективно працюють і виглядають добре на різноманітних пристроях, від мобільних телефонів до настільних компютерів. Основна ідея адаптивної верстки полягає в тому, що дизайн веб-сторінки "відгукується" на різні умови перегляду, зокрема на розміри і роздільну здатність екрану пристрою, на якому він переглядається.';
+            }
+            else if (title === 'Десктопна версія'){newContainer2.innerHTML = `
+            Десктопна версія сайта — це версія веб-сайту, яка оптимізована для перегляду на настільних комп'ютерах та ноутбуках. Вона зазвичай має більший інтерфейс та розширені функціональні можливості порівняно з мобільною версією, оскільки настільні комп'ютери мають більші екрани і більшу потужність обробки. <br></br>
+            Фрагмент коду CSS <br>
+            <img src="desk.jpg" style="width: 250px; height: 200px;"><br></br>
+            Результат:<br></br>
+            <img src="desktop.jpg" style="width: 550px; height: 300px;"><br></br>    
+            `;}
+            else if (title === 'Планшетна версія'){newContainer2.innerHTML = `
+            Планшетна версія сайту — це оптимізована версія веб-сайту, спроектована для перегляду та використання на планшетних комп'ютерах. Цей тип дизайну займає проміжне місце між мобільними та десктопними версіями, беручи до уваги унікальні особливості планшетів, такі як розмір екрану та методи введення (сенсорний екран)
+            Фрагмент коду CSS <br>
+            <img src="tablecode.jpg" style="width: 450px; height: 300px;"><br></br>
+            Результат:<br></br>
+            <img src="tablet.jpg" style="width: 450px; height: 500px;"><br></br>    
+            `;}
+            else if (title === 'Мобільна версія'){newContainer2.innerHTML = `
+            Мобільна версія сайту — спеціально адаптована версія веб-сайту для використання на смартфонах та інших мобільних пристроях. Вона враховує особливості маленьких екранів, меншої потужності апаратного забезпечення, а також специфіку взаємодії через сенсорний екран
+            Фрагмент коду CSS <br>
+            <img src="mobile.jpg" style="width: 400px; height: 300px;"><br></br>
+            Результат:<br></br>
+            <img src="mobilet.jpg" style="width: 250px; height: 400px;"><br></br>    
+            `;}
+            else if (title === 'Висновки 4') {
+                newContainer2.innerHTML = 'У рамках лабораторної роботи №4 я зосередила увагу на адаптивній верстці веб-сайтів, використовуючи медіа-запити, медіа-типи, медіа-функції та метатег viewport. Ці інструменти дозволили нам створювати дизайн, який адаптується до різних пристроїв, від мобільних телефонів до десктопів, забезпечуючи оптимальний досвід для кожного користувача.';
+            }
+            else if (title === 'Тема Мета ЛР №5. Місце розташування лаби, звіту'){newContainer2.innerHTML = `
+            Тема:ФУНКЦІОНАЛЬНЕ ЗАСТОСУВАННЯ JAVASCRIPT У HTML-ДОКУМЕНТІ. ВИКОРИСТАННЯ МАСИВІВ У JS-СЦЕНАРІЯХ. РЕАЛІЗАЦІЯ ПРОГРАМ ЗАСОВАМИ МОВИ JAVASCRIPT <br> </br>
+            Мета: Придбати практичні навички роботи з масивами у js-сценаріях. Реалізація програм засовами мови JAVASCRIPT <br> </br>
+            Місце розташування Лабораторної роботи №5:
+            <a>https://github.com/villenuevve/Lab-5</a> <br></br>
+            Місце розташування звіту:
+            <a>https://github.com/villenuevve/Labs_report</a><br></br>
+            `;} 
+            else if (title === 'Способи функціонального застосування JavaScript'){newContainer2.innerHTML = `
+            JavaScript має широкі можливості функціонального програмування, що означає, що можна використовувати функції як значення, передавати їх у функції, повертати їх з функцій, а також створювати функції, які генерують і повертають інші функції. Ось деякі способи функціонального застосування JavaScript:
+            <br></br>
+            1. Замикання (Closures): Функції в JavaScript мають доступ до змінних, що знаходяться в області видимості свого зовнішнього середовища. Це дозволяє створювати замикання, коли внутрішня функція запам'ятовує змінні з зовнішньої функції, навіть після того, як зовнішня функція завершила роботу.<br></br>
+            2. Функціональні методи масивів: JavaScript масиви мають кілька вбудованих функцій вищих порядків, таких як map(), filter(), reduce() і forEach(), які дозволяють легко маніпулювати елементами масиву.<br></br>
+            3. Рекурсія: Функції в JavaScript можуть викликати самих себе, що дозволяє виконувати рекурсивні алгоритми.<br></br>
+            4. Функціональне програмування з використанням бібліотек: Бібліотеки, такі як Lodash або Ramda, надають додаткові інструменти для функціонального програмування, такі як каррірування, композиція функцій, мемоізація і багато іншого.<br></br>
+            `;}
+
+            else if (title === 'Схема URL'){newContainer2.innerHTML = `
+            Схема URL (Uniform Resource Locator) може бути використана як спосіб функціонального застосування JavaScript через використання об'єкта URL або URLSearchParams, які доступні в браузері та середовищі виконання JavaScript, такому як Node.js.<br></br>
+            Схема URL реалізована за допомогою навігаційного меню через атрибути href в елементах <a>. Це дозволяє користувачам переходити до різних частин сайту або на інші веб-сторінки. <br></br>
+            <img src="url.jpg" style="width: 550px; height: 100px;"><br></br> 
+            `;}
+
+            else if (title === 'Обробник подій'){newContainer2.innerHTML = `
+            Обробник подій в JavaScript - це механізм, який дозволяє вам реагувати на різні події, такі як клік миші, натискання клавіші, завантаження сторінки тощо, викликаючи відповідні функції, які визначаються. Це можна розглядати як спосіб функціонального застосування JavaScript, оскільки використовуються функції для реагування на події. <br></br>
+            Обробники подій додані для відкриття і закриття модального вікна (функції openContactModal() і closeContactModal())<br></br>
+            <img src="script.jpg" style="width: 550px; height: 200px;">
+            `;}
+
+            else if (title === 'Підстановка entity'){newContainer2.innerHTML = `
+            Підстановка символьних ентітів - це процес заміни спеціальних символів або символів з певним значенням на їх відповідні символьні ентіті в HTML. Це використовується для того, щоб забезпечити коректне відображення символів, які можуть бути сприйняті браузером як частину HTML-розмітки, та для уникнення конфліктів із синтаксисом HTML.<br></br>
+            Ось деякі з найбільш часто використовуваних символьних ентітів у HTML (в оригіналі без пробілів):<br></br>
+            & amp; - символ "&"<br></br>
+            & lt; - символ "<"<br></br>
+            & gt; - символ ">"<br></br>
+            & quot; - символ подвійної лапки (")<br></br>
+            & apos; - символ апострофа (')<br></br>
+            & copy; - символ копірайту ©<br></br>
+            & reg; - символ зареєстрованого товарного знаку ®<br></br>
+            & nbsp; - нерозривний пробіл<br></br>
+            Підстановка entity використовується для спеціальних символів, таких як & у тексті (наприклад, "від 1000 ₴")<br></br>
+            <img src="entity.jpg" style="width: 550px; height: 130px;">
+            `;}
+
+            else if (title === 'Вставка тег script'){newContainer2.innerHTML = `
+            Вставка тегу script - це спосіб додавання JavaScript-коду до HTML-сторінки. Коли браузер зустрічає під час обробки HTML-документу цей тег, він виконує вміст цього тегу як JavaScript-код.<br></br>
+            Зовнішнє вставлення (External): Посилання на зовнішні файли JavaScript, використовуючи атрибут src тегу script. <br></br>
+            <img src="script.jpg" style="width: 450px; height: 250px;"><br></br>
+            У цьому випадку браузер завантажує і виконує вміст файлу main.js. Цей підхід зручний для великих програм або для того, щоб використовувати один і той же JavaScript-код на кількох сторінках.
+            `;}
+
+            else if (title === 'Завдання 1 з масивом'){newContainer2.innerHTML = `
+            Створити одновимірний масив, кількість елементів якого задана користувачем. Визначити максимальне та мінімальне значення серед елементів із парними та непарними номерами. Упорядкувати масив у порядку зменшення методом вибору. Надрукувати вхідний та вихідний масив<br></br>
+            Kод HTML<br></br>
+            <img src="5 style.jpg" style="width: 350px; height: 150px;"><br></br>
+            Kод CSS<br></br>
+            <img src="5 html.jpg" style="width: 450px; height: 150px;"><br></br>  
+            Результат<br></br> 
+            <img src="5 res.jpg" style="width: 450px; height: 100px;"><br></br> 
+            `;}
+
+            else if (title === 'Завдання 2'){newContainer2.innerHTML = `
+            Реалізувати можливість перегляду зображень за таймером, врахувати можливість налаштування розміру зображень, циклічність перегляду, а також часу між переключеннями. .<br></br>
+            Фрагмент коду HTML<br></br>
+            <img src="style.jpg" style="width: 200px; height: 400px;"><br></br>  
+            Фрагмент коду CSS<br></br> 
+            <img src="html.jpg" style="width: 550px; height: 400px;"><br></br> 
+            Результат<br></br> 
+            <img src="res.jpg" style="width: 400px; height: 400px;"><br></br>
+            `;}
+
+            else if (title === 'Висновки 5') {
+                newContainer2.innerHTML = 'У рамках лабораторної роботи №5 я придбала практичні навички роботи з масивами у js-сценаріях. Реалізувала програми засобами мови JAVASCRIPT';
+            }
+
+            else if (title === 'Тема Мета ЛР №5.1 Місце розташування лаби, звіту'){newContainer2.innerHTML = `
+            Тема:ОБ'ЄКТ. МЕТОДИ ОБ'ЄКТА. МАСИВ ОБ'ЄКТІВ. ДЕСТРУКТУРИЗАЦІЯ ОБ'ЄКТІВ. CALLBACK. СТРІЛОЧНІ ФУНКЦІЇ. СТРІЛОЧНІ ФУНКЦІЇ ЯК КОЛБЕКИ<br> </br>
+            Мета: Придбати практичні навички роботи з об'єктами. Методи об'єкта. Callback. Стрілочні функції. Стрілочні функції як колбеки. Реалізація програм засовами мови JAVASCRIPT <br> </br>
+            Місце розташування Лабораторної роботи №5:
+            <a>https://github.com/villenuevve/Lab-5.1</a> <br></br>
+            Місце розташування звіту:
+            <a>https://github.com/villenuevve/Labs_report</a><br></br>
+            `;} 
+
+            else if (title === 'Завдання 1'){newContainer2.innerHTML = `
+            Завдання<br></br>
+            <img src="5.1.jpg" style="width: 600px; height: 250px;"><br></br>  
+            Код<br></br> 
+            <img src="code 5.1.jpg" style="width: 500px; height: 300px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 5.1.jpg" style="width: 300px; height: 150px;"><br></br>
+            `;}
+
+            else if (title === 'Завдання 3'){newContainer2.innerHTML = `
+            Завдання<br></br>
+            <img src="5.3.jpg" style="width: 450px; height: 250px;"><br></br>  
+            Код<br></br> 
+            <img src="code 5.3.jpg" style="width: 600px; height: 430px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 5.3.jpg" style="width: 400px; height: 250px;"><br></br>
+            `;}
+
+            else if (title === 'Завдання 5'){newContainer2.innerHTML = `
+            Завдання<br></br>
+            <img src="5.5.jpg" style="width: 600px; height: 200px;"><br></br>  
+            Код<br></br> 
+            <img src="code 5.5.jpg" style="width: 300px; height: 100px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 5.5.jpg" style="width: 300px; height: 150px;"><br></br>
+            `;}
+
+            else if (title === 'Завдання 7'){newContainer2.innerHTML = `
+            Завдання<br></br>
+            <img src="5.7.jpg" style="width: 600px; height: 100px;"><br></br>  
+            Код<br></br> 
+            <img src="code 5.7.jpg" style="width: 300px; height: 400px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 5.7.jpg" style="width: 250px; height: 100px;"><br></br>
+            `;}
+
+            else if (title === 'Завдання 9'){newContainer2.innerHTML = `
+            Завдання<br></br>
+            <img src="5.9.jpg" style="width: 600px; height: 300px;"><br></br>  
+            Код<br></br> 
+            <img src="code 5.9.jpg" style="width: 450px; height: 300px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 5.9.jpg" style="width: 300px; height: 150px;"><br></br>
+            `;}
+
+            else if (title === 'Завдання 10'){newContainer2.innerHTML = `
+            Завдання<br></br>
+            <img src="5.10.jpg" style="width: 600px; height: 150px;"><br></br>  
+            Код<br></br> 
+            <img src="code 5.10.jpg" style="width: 450px; height: 300px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 5.10.jpg" style="width: 100px; height: 70px;"><br></br>
+            `;}
+
+            else if (title === 'Висновки 5.1') {
+                newContainer2.innerHTML = 'У рамках лабораторної роботи №5.1 я було дослідила ООП-функціонал JS, використання callback та стрілочних функцій. Отримані знання було опрацьовано за допомиги практичних завдань.';
+            }
+
+            else if (title === 'Тема Мета ЛР №6 Місце розташування лаби, звіту'){newContainer2.innerHTML = `
+            Тема: КЛАСИ. ОБ'ЄКТНА МОДЕЛЬ ДОКУМЕНТА (DOM). ПОДІЇ. ОБ'ЄКТ ПОДІЇ. ДЕЛЕГУВАННЯ ПОДІЙ. THROTTLE. МОДУЛЬНОСТЬ КОДУ<br> </br>
+            Мета: Придбати практичні навички роботи з об'єктами. Методи об'єкта. Callback. Стрілочні функції. Стрілочні функції як колбеки​. Реалізація програм засовами мови JAVASCRIPT<br> </br>
+            Місце розташування Лабораторної роботи №6:
+            <a>https://github.com/villenuevve/Lab6</a> <br></br>
+            Місце розташування звіту:
+            <a>https://github.com/villenuevve/Labs_report</a><br></br>
+            `;} 
+
+            else if (title === 'Завдання 6.1'){newContainer2.innerHTML = `
+            Завдання 6.1<br></br>
+            <img src="6.1.jpg" style="width: 600px; height: 250px;"><br></br>  
+            Код<br></br> 
+            <img src="code 6.1.jpg" style="width: 400px; height: 100px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 6.1.jpg" style="width: 200px; height: 100px;"><br></br>
+            `;}
+
+            else if (title === 'Завдання 6.3'){newContainer2.innerHTML = `
+            Завдання 6.3<br></br>
+            <img src="6.3.jpg" style="width: 450px; height: 250px;"><br></br>  
+            Код<br></br> 
+            <img src="code 6.3.jpg" style="width: 500px; height: 350px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 6.3.jpg" style="width: 200px; height: 70px;"><br></br>
+            `;}
+
+            else if (title === 'Завдання 6.5'){newContainer2.innerHTML = `
+            Завдання 6.5<br></br>
+            <img src="6.5.jpg" style="width: 600px; height: 400px;"><br></br>  
+            Код<br></br> 
+            <img src="code 6.5.jpg" style="width: 600px; height: 200px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 6.5.jpg" style="width: 150px; height: 200px;">
+            `;}
+
+            else if (title === 'Завдання 6.7'){newContainer2.innerHTML = `
+            Завдання 6.7<br></br>
+            <img src="6.7.JPG" style="width: 600px; height: 300px;"><br></br>  
+            Код<br></br> 
+            <img src="code 6.7.JPG" style="width: 400px; height: 200px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 6.7.JPG" style="width: 200px; height: 150px;"><br></br>
+            `;}
+
+            else if (title === 'Завдання 6.8'){newContainer2.innerHTML = `
+            Завдання 6.8<br></br>
+            <img src="6.8.JPG" style="width: 600px; height: 400px;"><br></br>  
+            Код<br></br> 
+            <img src="code 6.8.JPG" style="width: 400px; height: 350px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 6.8.JPG" style="width: 200px; height: 200px;"><br></br>
+            `;}
+
+            else if (title === 'Завдання 6.9'){newContainer2.innerHTML = `
+            Завдання 6.9<br></br>
+            <img src="6.9.JPG" style="width: 600px; height: 400px;"><br></br>  
+            Код<br></br> 
+            <img src="code 6.9.JPG" style="width: 400px; height: 150px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 6.9.JPG" style="width: 200px; height: 100px;"><br></br>
+            `;}
+
+            else if (title === 'Завдання 6.10'){newContainer2.innerHTML = `
+            Завдання 6.10<br></br>
+            <img src="6.10.JPG" style="width: 350px; height: 400px;"><br></br>  
+            Код<br></br> 
+            <img src="code 6.10.JPG" style="width: 350px; height: 150px;"><br></br> 
+            Результат<br></br> 
+            <img src="res 6.10.JPG" style="width: 150px; height: 150px;"><br></br>
+            `;}
+
+            else if (title === 'Висновки 6') {
+                newContainer2.innerHTML = 'У рамках лабораторної роботи №6 я дослідила ООП-функціонал JS, використання callback та стрілочних функцій. Отримані знання було опрацьовано за допомиги практичних завдань.';
+            }
+        }
+    </script>    
+</body>
+</html>
